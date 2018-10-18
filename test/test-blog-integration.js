@@ -43,6 +43,13 @@ function generateBlogPostData() {
 }
 
 
+function tearDownDb() {
+	console.warn('Deleting database');
+	return mongoose.connection.dropDatabase();
+}
+
+
+
 describe('Blog API resource', function() {
 
 	before(function() {
@@ -61,11 +68,29 @@ describe('Blog API resource', function() {
 	describe('GET endpoints', function() {
 
 		it('should', function() {
-			
+
 		});
+	});
 
+	describe('POST endpoints', function() {
 
+		it('should', function() {
 
+		});
+	});
+
+	describe('PUT endpoints', function() {
+
+		it('should', function() {
+
+		});
+	});
+
+	describe('DELET endpoints', function() {
+
+		it('should', function() {
+
+		});
 	});
 
 
