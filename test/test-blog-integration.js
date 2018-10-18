@@ -41,3 +41,62 @@ function generateBlogPostData() {
   		created: faker.date.past()
 	};
 }
+
+
+describe('Blog API resource', function() {
+
+	before(function() {
+		return runServer(TEST_DATABASE_URL);
+	});
+
+	beforeEach(function() {
+		return seedBlogPostData();
+	});
+
+	afterEach(function() {
+		return closeServer();
+	});
+
+
+	describe('GET endpoints', function() {
+
+		it('should', function() {
+			
+		});
+
+
+
+	});
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
