@@ -159,7 +159,35 @@ describe('Blog API resource', function() {
 
 	describe('PUT endpoints', function() {
 
-		it('should', function() {
+		it('should update posts', function() {
+			const updateData = {
+		        title: 'cats cats cats',
+		        content: 'dogs dogs dogs',
+		        author: {
+		          firstName: 'foo',
+		          lastName: 'bar'
+		        }
+		      };
+
+		      return BlogPost
+		        .findOne()
+		        .then(post => {
+		          updateData.id = post.id;
+
+		          return chai.request(app)
+		            .put(`/posts/${post.id}`)
+		            .send(updateData);
+		        })
+		        .then(res => {
+		          res.should.have.status(204);
+		          return BlogPost.findById(updateData.id);
+		        })
+		        .then(post => {
+		          post.title.should.equal(updateData.title);
+		          post.content.should.equal(updateData.content);
+		          post.author.firstName.should.equal(updateData.author.firstName);
+		          post.author.lastName.should.equal(updateData.author.lastName);
+		        });
 
 		});
 	});
@@ -167,12 +195,25 @@ describe('Blog API resource', function() {
 	describe('DELET endpoints', function() {
 
 		it('should', function() {
+			let post;
+
+		      return BlogPost
+		        .findOne()
+		        .then(_post => {
+		          post = _post;
+		          return chai.request(app).delete(`/posts/${post.id}`);
+		        })
+		        .then(res => {
+		          res.should.have.status(204);
+		          return BlogPost.findById(post.id);
+		        })
+		        .then(_post => {
+		          
+		          should.not.exist(_post);
+		        });
+		    });
 
 		});
-	});
-
-
-});
 
 
 
